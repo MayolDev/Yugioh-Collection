@@ -1,30 +1,32 @@
-# React + TypeScript + Vite
+# Yugioh Collection
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+This is a Yugioh collection app that allows users to create a collection of cards they own. Users can add cards to their collection by searching for them in the search bar. Users can also view their collection and delete cards from their collection.
 
-Currently, two official plugins are available:
+## Table of Contents
+* [Installation](#installation)
+* [Usage](#usage)
+* [License](#license)
+* [Questions](#questions)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
+To install necessary dependencies, run the following command:
+\`\`\`
+npm i
+\`\`\`
 
-## Expanding the ESLint configuration
+## Usage
+To use this app, run the following command:
+\`\`\`
+npm start
+\`\`\`
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## License
+This project is licensed under the ${license} license.
 
-- Configure the top-level `parserOptions` property like this:
+## Questions
+If you have any questions about the repo, open an issue or contact me directly at ${email}. You can find more of my work at [${github}](${url}).
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+
