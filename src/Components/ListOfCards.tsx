@@ -7,7 +7,6 @@ export const ListOfCards = ({cards, title} : {cards : Card[], title: string}) =>
     const [modal , setModal] = useState<boolean>(false)
     const [cardInfo , setCardInfo] = useState<Card | null>(null)
     
-
     const handleCardInfo = ({card} : {card : Card}) => {
         setModal(true)
         setCardInfo(card)
@@ -17,9 +16,6 @@ export const ListOfCards = ({cards, title} : {cards : Card[], title: string}) =>
         setModal(false)
         setCardInfo(null)
     }
-
-
-
 
     return cards  && cards.length > 0 ? (
         <div className="bg-[#00000066] rounded p-10 relative min-h-[700px]">
@@ -32,12 +28,13 @@ export const ListOfCards = ({cards, title} : {cards : Card[], title: string}) =>
                 }}>
                     <div className='relative'>
                         <img  src={card.card_images[0].image_url} alt={card.name} width={150} height={150} />
+                        {card.type !== 'Spell Card' && card.type !== 'Trap Card' && card.type !== 'Skill Card' &&
                         <div className="absolute bottom-0 left-0 bg-[#00000066] rounded p-2 w-full flex gap-2 justify-between">
                             <small className="text-white font-bold">ATK: {card.atk}</small>
                             <small className="text-white font-bold">DEF: {card.def}</small>
                         </div>
+                        }
                         
-
                     </div>
                     {card.card_prices[0].cardmarket_price ? <small className="absolute top-0 right-0 bg-[#000000bb] rounded p-2 text-white font-bold"> ${card.card_prices[0].cardmarket_price}</small> : null}
                     {card.cantidad > 0 ? <p className='text-xl absolute top-0 left-0 rounded-full bg-[#9a0056] w-8 h-8 font-bold border-2'>x{card.cantidad}</p> : null}
@@ -58,10 +55,6 @@ export const ListOfCards = ({cards, title} : {cards : Card[], title: string}) =>
             </div>
             
             }
-
-
-
-
 
        </div>
        </div>

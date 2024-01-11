@@ -3,8 +3,6 @@ let request: IDBOpenDBRequest;
 let db: IDBDatabase;
 let version = 1;
 
-
-
 export const initDB = (): Promise<boolean> => {
   return new Promise((resolve) => {
     // open the connection
@@ -33,7 +31,6 @@ export const initDB = (): Promise<boolean> => {
     
   });
 };
-
 
 export const addData = <T>(storeName: string, data: T): Promise<T|string|null> => {
     return new Promise((resolve) => {
@@ -119,8 +116,6 @@ export const addData = <T>(storeName: string, data: T): Promise<T|string|null> =
       };
     });
   }
-
-
 
 
   export const deleteData = (storeName: string, key: number): Promise<boolean> => {

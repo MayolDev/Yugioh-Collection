@@ -7,7 +7,6 @@ interface Props {
 
 export const Sorts = ({setSort, setOrder, sort}: Props) => {
 
-
     const { sortBy, handleSelectChange } = useYugiohSorts({ setOrder, setSort });
     
       return (

@@ -2,7 +2,6 @@
 import { Card } from '../types/types.d'
 //import { initDB, addData, getData, deleteData, existsData, updateData } from '../db/cardDB'
 import { useEffect, useState } from 'react'
-import { useCollectionStore } from '../store/collection'
 import { useCollection } from '../hooks/useCollection'
 
 export const CardInfo = ({card } : {card:Card})  => {  
@@ -12,11 +11,6 @@ export const CardInfo = ({card } : {card:Card})  => {
   const [existInCollection, setExistInCollection] = useState(false)
   const [cantidad, setCantidad] = useState(0)
 
- 
-  
-
-
- 
     useEffect(() => {
       (async () => {
          const res = await existsCard(card);
@@ -29,7 +23,6 @@ export const CardInfo = ({card } : {card:Card})  => {
          }
       })();
    }, [existsCard, collection, card, getCard]);
-  
   
     const handleAddToCollection = async () => {
 

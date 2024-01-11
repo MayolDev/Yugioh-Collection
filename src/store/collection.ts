@@ -6,24 +6,24 @@ import { sortingCards } from "../utils/sortingCardsUtils";
 interface State {
  
  collection: Card[];
-  page: number;
   limitedCollection: Card[];
+  page: number;
   LIMIT_CARDS: number;
   sort: string;
   order: string;
   setCollection: (collection: Card[]) => void;
+  setSort: (sort: string) => void;
+  setOrder: (order: string) => void;
   getCollection: () => Promise<Card[]>;
   getCard: (card: Card) => Promise<Card | null>;
-  addCard: (card: Card) => Promise<void | string>;
-  removeCard: (card: Card) => Promise<Card | null | string>;
-  removeAllCopies: (card: Card) => Promise<Card | null | string>;
+  addCard: (card: Card) => Promise<Card[] | string>;
+  removeCard: (card: Card) => Promise<void | string>;
+  removeAllCopies: (card: Card) => Promise<void | string |null>;
   clearCollection: () => Promise<boolean>;
   existsCard: (card: Card) => Promise<boolean>;
   SetPage: (page:number) => void;
   RefreshPage: () => void;
   SortingCards: () => void;
-  setSort: (sort: string) => void;
-  setOrder: (order: string) => void;
 
 
 }
@@ -147,7 +147,6 @@ export const useCollectionStore = create<State>((set, get) => {
         const newCollection =  cantidad === 0 ? await deleteFromCollection(card) : await deleteOneFromCollection({...card, cantidad})
         set({ collection: newCollection, limitedCollection: getLimitedCollection(newCollection, limit, offset) });
       } 
-      return null;
     },
     removeAllCopies: async (card: Card) => { 
 

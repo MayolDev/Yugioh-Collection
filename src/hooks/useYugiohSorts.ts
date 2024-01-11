@@ -6,7 +6,7 @@ type SortFunction = (sortProperty: string) => void;
 
 export const useYugiohSorts = ({setSort, setOrder}: Props) => {
 
-  const sortBy: { [key: string]: SortFunction } = {
+  const sortBy: { [key: string]: any } = {
     name: createSortFunction("name"),
     level: createSortFunction("level"),
     frameType: createSortFunction("frameType"),

@@ -8,7 +8,6 @@ export const SearchBar = () => {
     const SetPage = useCardsStore(state => state.SetPage)
     const navigate = useNavigate();
 
-
     const handleSubmit =async  (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 

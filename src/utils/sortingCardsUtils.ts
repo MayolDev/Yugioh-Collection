@@ -15,14 +15,14 @@ export const sortingCards = (sort: string, order: string, collection: Card[]): C
         if (typeof valA === 'string' && typeof valB === 'string') {
           return order === 'asc' ? valA.localeCompare(valB) : valB.localeCompare(valA);
         }
-    
+
         // Si una de las propiedades es string y la otra número, priorizamos el string
         if (typeof valA === 'string' || typeof valB === 'string') {
           return order === 'asc' ? typeof valA === 'string' ? -1 : 1 : typeof valB === 'string' ? 1 : -1;
         }
-    
+
         // Ambas propiedades son números
-        return order === 'asc' ? valA - valB : valB - valA;
+        return order === 'asc' ? Number(valA) - Number(valB) : Number(valB) - Number(valA);
       });
 
 
