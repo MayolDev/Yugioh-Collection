@@ -36,7 +36,7 @@ Your contribution is welcome! If you find any issues, have ideas for new feature
 
 ## Technologies Used
 
-- Frontend: HTML5, CSS3, JavaScript
+- Frontend: HTML5, CSS3, JavaScript, React, zustand
 - Database: IndexedDB
 
 ## Local Installation
