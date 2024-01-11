@@ -1,12 +1,13 @@
+import { MouseEventHandler } from "react";
+
 interface Props {
     setSort: (sort: string) => void;
     setOrder: (order: string) => void;
 }
-type SortFunction = (sortProperty: string) => void;
 
 export const useYugiohSorts = ({setSort, setOrder}: Props) => {
 
-  const sortBy: { [key: string]: any } = {
+  const sortBy: { [key: string]: MouseEventHandler } = {
     name: createSortFunction("name"),
     level: createSortFunction("level"),
     frameType: createSortFunction("frameType"),
@@ -15,7 +16,7 @@ export const useYugiohSorts = ({setSort, setOrder}: Props) => {
     attribute: createSortFunction("attribute"),
   };
 
-  function createSortFunction(sortProperty: string): SortFunction {
+  function createSortFunction(sortProperty: string): MouseEventHandler {
       return () => setSort(sortProperty);
   }
 
