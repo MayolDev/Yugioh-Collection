@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Belwe";
+    src: url("../fonts/Belwe Regular/Belwe Regular.ttf");
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Belwe";
+    src: url("../fonts/Belwe Bold/Belwe Bold.otf");
+    font-style: normal;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Belwe";
+    src: url("../fonts/Belwe Medium/Belwe Medium.otf");
+    font-style: normal;
+    font-weight: 500;
+
+}
+
+@font-face {
+    font-family: "Belwe";
+    src: url("../fonts/Belwe Italic/Belwe Italic.ttf");
+    font-style: italic;
+    font-weight: 400;
+}
+
+body {
+    font-family: "Belwe", sans-serif;
+    background-color: #11007e;
+    color: white;
+    background-image: url("./fondo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+
+}
+
+html {
+    cursor: url("cursor.png"), auto;
+}
+
+.lds-dual-ring {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
