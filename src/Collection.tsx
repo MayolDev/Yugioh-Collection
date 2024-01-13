@@ -40,10 +40,7 @@ function Collection() {
       ExportCollectionInCSV={ExportCollectionInCSV} 
       importCollectionFromCsv={importCollectionFromCsv}/>
     
-    {limitedCollection && limitedCollection.length > 0 
-      ? <ListOfCards cards={limitedCollection as Card[]} title={"My Collection"}/> 
-      : <h1 className='text-2xl font-bold my-5 text-black'><span className='bg-white p-2 rounded'>*No cards found in your collection*</span></h1>}
-    
+   <ListOfCards cards={limitedCollection as Card[]} title={"My Collection"} error={"*No cards found in your collection*"}/> 
     <Pagination page={page} setPage={SetPage} cardsNumber={collection.length} limitCards={LIMIT_CARDS} />
     <Filters FilterByType={FilterByType} getCollection={getCollection}/>
     <Footer/>

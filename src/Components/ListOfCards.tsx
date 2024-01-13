@@ -2,7 +2,7 @@ import { Card } from "../types/types.d";
 import { CardInfo } from "./CardInfo";
 import { useState } from "react";
 
-export const ListOfCards = ({cards, title} : {cards : Card[], title: string}) => {
+export const ListOfCards = ({cards, title, error} : {cards : Card[], title: string, error:string}) => {
 
     const [modal , setModal] = useState<boolean>(false)
     const [cardInfo , setCardInfo] = useState<Card | null>(null)
@@ -58,7 +58,7 @@ export const ListOfCards = ({cards, title} : {cards : Card[], title: string}) =>
 
        </div>
        </div>
-    ): null
+    ): <h1 className='text-2xl font-bold my-5 text-[black]'><span className='bg-white p-2 rounded'>{error}</span></h1>
 
 
 }
