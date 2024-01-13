@@ -42,7 +42,7 @@ function Collection() {
     
     {limitedCollection && limitedCollection.length > 0 
       ? <ListOfCards cards={limitedCollection as Card[]} title={"My Collection"}/> 
-      : <h1 className='text-2xl font-bold my-5'>*No tienes cartas en tu colección*</h1>}
+      : <h1 className='text-2xl font-bold my-5 text-black'><span className='bg-white p-2 rounded'>*No cards found in your collection*</span></h1>}
     
     <Pagination page={page} setPage={SetPage} cardsNumber={collection.length} limitCards={LIMIT_CARDS} />
     <Filters FilterByType={FilterByType} getCollection={getCollection}/>

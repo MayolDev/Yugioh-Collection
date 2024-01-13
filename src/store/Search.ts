@@ -42,6 +42,11 @@ export const useCardsStore = create<State>((set, get) => {
         `https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${search}`
       );
       const data = await res.json();
+      console.log(data)
+      if (data.error) {
+        set({ cards: [], limitedCards: [] });
+        return;
+      }
       const cards = data.data;
       const { limit, offset } = calculateLimitAndOffset();
       set({ cards , limitedCards: getLimitedCollection(cards, limit, offset) });
