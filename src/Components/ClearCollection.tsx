@@ -14,11 +14,11 @@ export const ClearCollection = ({modal,handleClearCollection, clearCollection } 
     <div className='bg-white rounded p-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
       <h2 className='text-2xl font-bold text-center text-black'>Are you sure you want to delete your collection?</h2>
       <div className='flex justify-evenly'>
-        <button className='bg-red-900 font-bold text-white p-2 rounded mt-2' onClick={() => {
+        <button className='bg-red-600 font-bold text-white p-2 rounded mt-2' onClick={() => {
           clearCollection()
           handleClearCollection()
         }}>Yes</button>
-        <button className='bg-red-600 font-bold text-white p-2 rounded mt-2' onClick={handleClearCollection}>No</button>
+        <button className='bg-green-600 font-bold text-white p-2 rounded mt-2' onClick={handleClearCollection}>No</button>
       </div>
     </div>
     </div>

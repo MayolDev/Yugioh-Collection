@@ -1,47 +1,14 @@
 
 import { Card } from '../types/types.d'
-//import { initDB, addData, getData, deleteData, existsData, updateData } from '../db/cardDB'
-import { useEffect, useState } from 'react'
-import { useCollection } from '../hooks/useCollection'
+import { useCardInfo } from '../hooks/useCardInfo'
 
 export const CardInfo = ({card } : {card:Card})  => {  
   
   const {name, type, card_images, desc, atk, def, level, attribute,race } = card
-  const { collection, addCard, removeCard, removeAllCopies, getCard, existsCard} = useCollection()
-  const [existInCollection, setExistInCollection] = useState(false)
-  const [cantidad, setCantidad] = useState(0)
-
-    useEffect(() => {
-      (async () => {
-         const res = await existsCard(card);
-         setExistInCollection(res);
-         if (res) {
-            const cardData = await getCard(card);
-            setCantidad(cardData?.cantidad || 0);
-         } else {
-            setCantidad(0);
-         }
-      })();
-   }, [existsCard, collection, card, getCard]);
   
-    const handleAddToCollection = async () => {
+  const {handleAddToCollection, handleRemoveFromCollection, handleRemoveOneFromCollection, existInCollection, cantidad} = useCardInfo(card)
 
-     await addCard(card)
-
-    }
-
-    const handleRemoveFromCollection = async () => {
-
-      removeAllCopies(card)
-
-    }
-
-    const handleRemoveOneFromCollection = async () => {
-    
-      await removeCard(card)
   
-    }
-    
     return  (
       
         <div className='flex flex-col items-center	bg-[#00000066] rounded my-5 p-5'>
@@ -55,7 +22,7 @@ export const CardInfo = ({card } : {card:Card})  => {
             </div>
             <div className='relative'>
       <img src={card_images[0].image_url} alt={name}  width={300} height={300}/>
-      {cantidad > 0 ? <p className='text-xl absolute top-0 rounded-full bg-[#9a0056] w-8 h-8 font-bold border-2'>x{cantidad}</p> : null}
+      {cantidad > 0 ? <p className={`text-xl absolute top-0 rounded-full bg-[#9a0056] w-8 h-8 font-bold border-2 cantidad`}>x{cantidad}</p> : null}
       </div>
 
       <div className='flex justify-between	w-80 my-2'>
