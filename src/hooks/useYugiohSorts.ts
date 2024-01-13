@@ -20,7 +20,7 @@ export const useYugiohSorts = ({setSort, setOrder}: Props) => {
       return () => setSort(sortProperty);
   }
 
-  function handleSelectChange(e: any) {
+  function handleSelectChange(e: React.ChangeEvent<HTMLSelectElement>) {
       setOrder(e.target.value);
   }
 

@@ -11,14 +11,21 @@ import { Sorts } from './Components/Sorts'
 
 function Collection() {
   
-  const {collection, limitedCollection, page, SetPage, LIMIT_CARDS, setOrder, setSort , sort} = useCollection()
+  const {collection, limitedCollection, page, SetPage, LIMIT_CARDS, setOrder, setSort , sort, totalCards, totalPrice} = useCollection()
+
 
   return (
 
   <>
     <Header/>
     <SearchBar/>
+ 
     <Sorts setOrder={setOrder} setSort={setSort} sort={sort}/>
+    <div className='flex justify-evenly bg-[#00000066] rounded my-2 '>
+      <h2 className='text-2xl font-bold my-5'>Total Price: {totalPrice}</h2>
+      <h2 className='text-2xl font-bold my-5 mx-5'>Total Cards: {totalCards}</h2>
+    </div>
+    
     {limitedCollection && limitedCollection.length > 0 
       ? <ListOfCards cards={limitedCollection as Card[]} title={"My Collection"}/> 
       : <h1 className='text-2xl font-bold my-5'>*No tienes cartas en tu colección*</h1>}

@@ -20,7 +20,7 @@ export const ListOfCards = ({cards, title} : {cards : Card[], title: string}) =>
     return cards  && cards.length > 0 ? (
         <div className="bg-[#00000066] rounded p-10 relative min-h-[700px]">
                         <h2 className="text-3xl font-bold text-[#ffc100] mb-5">{title}</h2>
-        <div className="grid grid-cols-5 grid-flow-row gap-2 ">
+        <div className="grid xl:grid-cols-5 grid-flow-row gap-2 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
             {cards.map((card) => (
                 <div key={card.id} className="flex flex-col justify-center items-center cursor-pointer bg-[#580069] py-5 rounded truncate ... px-2 h-auto max-h-[350px] relative" onClick={() => {
                     handleCardInfo({card})
