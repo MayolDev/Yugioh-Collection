@@ -25,7 +25,7 @@ export const SearchBar = () => {
     }
 
     return (
-        <form className="w-full p-2 my-1 bg-white text-white gap-2 flex justify-center items-center rounded" onSubmit={handleSubmit} >
+        <form className="w-full p-2 my-1 bg-[#F8E9C0] text-white gap-2 flex justify-center items-center rounded " onSubmit={handleSubmit} >
             <label className="text-[#580069] font-bold text-2xl  ">Search</label>
             <input className="bg-[#000000aa] text-white placeholder:text-white p-2 w-80 rounded" type="search" id="q" aria-label="Search Cards" name="q" placeholder="Search a card by name..."  />
             <button className="bg-[#580069] text-white p-2 rounded" >Search</button>

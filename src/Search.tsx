@@ -15,7 +15,7 @@ function Search( ) {
     <>
   <Header/>
   <SearchBar/>
-  <Sorts  setOrder={setOrder} setSort={setSort} sort={sort}/>
+  {limitedCards.length > 0 && <Sorts  setOrder={setOrder} setSort={setSort} sort={sort}/>}
   <ListOfCards title={'Search...'} cards={limitedCards} />
     {cards && cards.length > 0 ? <Pagination page={page} setPage={SetPage} cardsNumber={cards.length} limitCards={LIMIT_CARDS} /> : null } 
   <Footer/>

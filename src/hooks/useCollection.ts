@@ -19,7 +19,8 @@ export const useCollection = () => {
       removeCard,
       removeAllCopies,
       getCard,
-      existsCard
+      existsCard,
+      clearCollection
   } = useCollectionStore(state => state);
 
   const totalPrice = useMemo(() => {
@@ -69,6 +70,7 @@ export const useCollection = () => {
       getCard,
       existsCard,
       totalPrice,
-      totalCards
+      totalCards,
+      clearCollection
   };
 };
