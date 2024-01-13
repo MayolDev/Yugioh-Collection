@@ -20,7 +20,10 @@ export const useCollection = () => {
       removeAllCopies,
       getCard,
       existsCard,
-      clearCollection
+      clearCollection,
+      FilterByType,
+      ExportCollectionInCSV,
+      importCollectionFromCsv
   } = useCollectionStore(state => state);
 
   const totalPrice = useMemo(() => {
@@ -71,6 +74,9 @@ export const useCollection = () => {
       existsCard,
       totalPrice,
       totalCards,
-      clearCollection
+      clearCollection,
+      FilterByType,
+      ExportCollectionInCSV,
+      importCollectionFromCsv
   };
 };

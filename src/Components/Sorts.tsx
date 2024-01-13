@@ -10,9 +10,9 @@ export const Sorts = ({setSort, setOrder, sort}: Props) => {
     const { sortBy, handleSelectChange } = useYugiohSorts({ setOrder, setSort });
     
       return (
-        <div className='bg-[#F8E9C0] rounded py-3 my-2'>
+        <div className='bg-[#F8E9C0] rounded py-3'>
             <h2 className='text-center text-2xl font-bold pb-2 text-[#580069] uppercase'>Sorts</h2>
-            <div className='flex  justify-center gap-4 flex-wrap'>
+            <div className='flex justify-center gap-3 flex-wrap p-2'>
             {Object.keys(sortBy).map((property) => (
           <button
             key={property}

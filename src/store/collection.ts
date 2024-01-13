@@ -3,6 +3,8 @@ import { Card } from "../types/types.d";
 import { getStoreData , initDB, addData, updateData, deleteData, existsData, getData, clearData} from "../db/cardDB";
 import { getLimitedCollection } from "../utils/paginationUtils";
 import { sortingCards } from "../utils/sortingCardsUtils";
+import { arrayObjToCsv, CardExport } from "../utils/objectToCsv";
+
 interface State {
  
  collection: Card[];
@@ -24,10 +26,11 @@ interface State {
   SetPage: (page:number) => void;
   RefreshPage: () => void;
   SortingCards: () => void;
-
-
+  FilterByType: (type: string) => void;
+  ExportCollectionInCSV: () => void;
+  importCollectionFromCsv: (file: Blob) => void;
+ 
 }
-
 
 export const useCollectionStore = create<State>((set, get) => {
 
@@ -66,6 +69,8 @@ export const useCollectionStore = create<State>((set, get) => {
     }
     return collection;
   }
+
+  
 
   return {
 
@@ -191,8 +196,129 @@ export const useCollectionStore = create<State>((set, get) => {
       const sortedCollection = sortingCards(sort, order, collection)
       set({ collection: sortedCollection, limitedCollection: getLimitedCollection(sortedCollection, limit, offset) });
     },
+   
+    FilterByType: async (type: string) => {
+      const dbExists = await initDB();
+      if (!dbExists) {
+        return false;
+      }
+      const { limit, offset } = calculateLimitAndOffset();
+      const collection = await getStoreData<Card>('cards');
+      const filteredCollection = collection.filter((card) => card.type === type);
+      set({ collection: filteredCollection, limitedCollection: getLimitedCollection(filteredCollection, limit, offset) , page: 1});
+      return true;
+    },
 
+    ExportCollectionInCSV: async () => {
+        
+        const dbExists = await initDB();
+        if (!dbExists) {
+            return false;
+        }
+  
+        const collection = await getStoreData<Card>('cards');
+        const collectionToExport = collection.map((card: Card) => {  
 
+          return {
+            id: card.id,
+            name: card.name,
+            type: card.type,
+            desc: card.desc,
+            atk  : card.atk,
+            def: card.def,
+            level: card.level,
+            race : card.race,
+            attribute: card.attribute,
+            card_images: card.card_images[0].image_url,
+            card_prices: card.card_prices[0].cardmarket_price,
+            cantidad: card.cantidad
+          }
+          
+        }
+        )
+        arrayObjToCsv(collectionToExport)
+        return true;
+
+  },
+
+    importCollectionFromCsv : async (file: Blob) => {
+      const dbExists = await initDB();
+      if (!dbExists) {
+        return false;
+      }
     
+      const reader = new FileReader();
+      reader.onload = async function () {
+        const csv = reader.result;
+        const lines = (csv as string).split('\n');
+        const headers = lines[0].split(',').map((header) => header.trim().replace(/"/g, '').replace("\r", ''));
+        
+        console.log('headers', headers);
+    
+        const cards = lines.slice(1).map((line) => {
+          const card: CardExport = {
+            id: 0,
+            name: '',
+            type: '',
+            desc: '',
+            atk: null,
+            def: null,
+            race: '',
+            level: undefined,
+            attribute: undefined,
+            card_images: '',
+            card_prices: '',
+            cantidad: 0,
+          };
+          const values = line.split(',');
+    
+          headers.forEach((header, index) => {
+            const value = values[index].trim();
+            if (value !== '') {
+              card[header] = isNaN(Number(value)) ? value : Number(value);
+            } else {
+              card[header] = null;
+            }
+          });
+    
+          return card;
+        });
+    
+        const newCollection: Card[] = cards.map((card) => {
+        
+          console.log('card', card.cantidad);
+
+        return ({
+          id: card.id as number,
+          name: card.name.split('"').join("")  as string,
+          type: card.type.split('"').join("") as string,
+          desc: card.desc.split('"').join("") as string,
+          atk: card.atk as number | null,
+          def: card.def as number | null,
+          race: card.race.split('"').join("") as string,
+          level: card.level as number | undefined,
+          attribute: card.attribute?.split('"').join("") as string | undefined,
+          card_images: [{ image_url: card.card_images.split('"').join("") as string, image_url_small: '' }],  // Ajusta según tu estructura
+          card_prices: [{ cardmarket_price: card.card_prices.split('"').join("") as string, tcgplayer_price: '', ebay_price: '', amazon_price: '' }],  // Ajusta según tu estructura
+          cantidad: card.cantidad as number,
+        })
+      });
+    
+    
+        await clearData('cards');
+        newCollection.forEach(async (card) => {
+          await addData('cards', card);
+        });
+        
+        const {limit, offset} = calculateLimitAndOffset();
+        set({ collection: newCollection, limitedCollection: getLimitedCollection(newCollection, limit, offset) });
+
+      };
+    
+      reader.readAsText(file);
+      return true;
+  }
+  
   };
+
 });
