@@ -15,7 +15,7 @@ export const SearchBar = () => {
         if(!e.currentTarget.q) return
         if(!e.currentTarget.q.value) return
         if(e.currentTarget.q.value === "") return
-        if (e.currentTarget.q.value.length < 3  && e.currentTarget.q.value.length > 50) return
+        if (e.currentTarget.q.value.length < 3 || e.currentTarget.q.value.length > 50) return
         
         const formData = new FormData(e.currentTarget)
         const q = formData.get("q") as string
